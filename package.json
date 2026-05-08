@@ -1,0 +1,124 @@
+{
+  "name": "fixprompt",
+  "displayName": "FixPrompt By AI",
+  "description": "Transform vague prompts into production-ready AI instructions.",
+  "version": "0.1.0",
+  "publisher": "hasanalihaolader",
+  "icon": "resources/icon.png",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hasanalihaolader/fixprompt"
+  },
+  "homepage": "https://github.com/hasanalihaolader/fixprompt",
+  "bugs": {
+    "url": "https://github.com/hasanalihaolader/fixprompt/issues",
+    "email": "rahibhasan689009@gmail.com"
+  },
+  "keywords": [
+    "ai",
+    "prompt",
+    "copilot",
+    "claude",
+    "llm",
+    "openai",
+    "gemini",
+    "groq",
+    "prompt engineering"
+  ],
+  "engines": {
+    "vscode": "^1.118.0"
+  },
+  "categories": [
+    "Other",
+    "Machine Learning"
+  ],
+  "activationEvents": [],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "chatParticipants": [
+      {
+        "id": "fixprompt.chat",
+        "name": "fixprompt",
+        "fullName": "FixPrompt",
+        "description": "Enhance your raw prompt into a production-ready AI prompt",
+        "isSticky": false
+      }
+    ],
+    "commands": [
+      {
+        "command": "fixprompt.fixPrompt",
+        "title": "FixPrompt: Fix Prompt"
+      },
+      {
+        "command": "fixprompt.askClaude",
+        "title": "FixPrompt: Enhance and Send to Claude"
+      },
+      {
+        "command": "fixprompt.openSettings",
+        "title": "FixPrompt: Settings"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "fixprompt.fixPrompt",
+        "key": "ctrl+shift+f",
+        "mac": "cmd+shift+f",
+        "when": "editorTextFocus && editorHasSelection"
+      }
+    ],
+    "configuration": {
+      "title": "FixPrompt",
+      "properties": {
+        "fixprompt.provider": {
+          "type": "string",
+          "default": "groq",
+          "enum": ["gemini", "groq", "openai"],
+          "enumDescriptions": [
+            "Google Gemini (free tier available)",
+            "Groq (fast, free tier available)",
+            "OpenAI (GPT-4o, GPT-4o-mini)"
+          ],
+          "description": "LLM provider to use for prompt enhancement."
+        },
+        "fixprompt.model": {
+          "type": "string",
+          "default": "gemini-1.5-flash",
+          "description": "Model to use. Changes automatically when you switch provider in FixPrompt Settings."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "pnpm run package",
+    "compile": "pnpm run check-types && pnpm run lint && node esbuild.js",
+    "watch": "npm-run-all -p watch:*",
+    "watch:esbuild": "node esbuild.js --watch",
+    "watch:tsc": "tsc --noEmit --watch --project tsconfig.json",
+    "package": "pnpm run check-types && pnpm run lint && node esbuild.js --production",
+    "compile-tests": "tsc -p . --outDir out",
+    "watch-tests": "tsc -p . -w --outDir out",
+    "pretest": "pnpm run compile-tests && pnpm run compile && pnpm run lint",
+    "check-types": "tsc --noEmit",
+    "lint": "eslint src",
+    "test": "vscode-test"
+  },
+  "devDependencies": {
+    "@types/mocha": "^10.0.10",
+    "@types/node": "22.x",
+    "@types/vscode": "^1.118.0",
+    "@vscode/test-cli": "^0.0.12",
+    "@vscode/test-electron": "^2.5.2",
+    "esbuild": "^0.27.3",
+    "eslint": "^9.39.3",
+    "npm-run-all": "^4.1.5",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.56.1"
+  },
+  "dependencies": {
+    "@google/genai": "^1.52.0",
+    "openai": "^6.36.0"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": ["@google/genai", "protobufjs"]
+  }
+}
