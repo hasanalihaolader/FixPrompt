@@ -32,7 +32,7 @@ async function fetchGeminiModels(apiKey: string): Promise<ModelInfo[]> {
   const res = await fetch(
     `https://generativelanguage.googleapis.com/v1beta/models?key=${apiKey}`
   );
-  if (!res.ok) throw new Error(`Gemini: ${res.statusText}`);
+  if (!res.ok) {throw new Error(`Gemini: ${res.statusText}`);}
 
   const data = await res.json() as {
     models?: { name: string; supportedGenerationMethods?: string[] }[];
@@ -51,7 +51,7 @@ async function fetchGroqModels(apiKey: string): Promise<ModelInfo[]> {
   const res = await fetch("https://api.groq.com/openai/v1/models", {
     headers: { Authorization: `Bearer ${apiKey}` },
   });
-  if (!res.ok) throw new Error(`Groq: ${res.statusText}`);
+  if (!res.ok) {throw new Error(`Groq: ${res.statusText}`);}
 
   const data = await res.json() as { data?: { id: string }[] };
 
@@ -65,7 +65,7 @@ async function fetchOpenAIModels(apiKey: string): Promise<ModelInfo[]> {
   const res = await fetch("https://api.openai.com/v1/models", {
     headers: { Authorization: `Bearer ${apiKey}` },
   });
-  if (!res.ok) throw new Error(`OpenAI: ${res.statusText}`);
+  if (!res.ok) {throw new Error(`OpenAI: ${res.statusText}`);}
 
   const data = await res.json() as { data?: { id: string }[] };
 

@@ -31,7 +31,7 @@ const FRAMEWORK_HINTS: Record<string, string> = {
 
 export async function scanWorkspace(): Promise<WorkspaceContext | null> {
   const folders = vscode.workspace.workspaceFolders;
-  if (!folders || folders.length === 0) return null;
+  if (!folders || folders.length === 0) {return null;}
 
   const root = folders[0].uri;
   const pkgUri = vscode.Uri.joinPath(root, "package.json");
@@ -79,16 +79,16 @@ async function fileExists(uri: vscode.Uri): Promise<boolean> {
 }
 
 async function detectPackageManager(root: vscode.Uri): Promise<string> {
-  if (await fileExists(vscode.Uri.joinPath(root, "pnpm-lock.yaml"))) return "pnpm";
-  if (await fileExists(vscode.Uri.joinPath(root, "yarn.lock"))) return "yarn";
-  if (await fileExists(vscode.Uri.joinPath(root, "bun.lockb"))) return "bun";
+  if (await fileExists(vscode.Uri.joinPath(root, "pnpm-lock.yaml"))) {return "pnpm";}
+  if (await fileExists(vscode.Uri.joinPath(root, "yarn.lock"))) {return "yarn";}
+  if (await fileExists(vscode.Uri.joinPath(root, "bun.lockb"))) {return "bun";}
   return "npm";
 }
 
 export function formatContext(ctx: WorkspaceContext): string {
   const lines: string[] = [];
   lines.push(`Language: ${ctx.language}`);
-  if (ctx.framework.length > 0) lines.push(`Frameworks/Libraries: ${ctx.framework.join(", ")}`);
+  if (ctx.framework.length > 0) {lines.push(`Frameworks/Libraries: ${ctx.framework.join(", ")}`);}
   lines.push(`Package manager: ${ctx.packageManager}`);
   return lines.join("\n");
 }
