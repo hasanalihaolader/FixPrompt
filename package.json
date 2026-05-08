@@ -2,7 +2,7 @@
   "name": "fixprompt",
   "displayName": "FixPrompt By AI",
   "description": "Transform vague prompts into production-ready AI instructions.",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "publisher": "HasanAliHolader",
   "icon": "resources/icon.png",
   "repository": {
