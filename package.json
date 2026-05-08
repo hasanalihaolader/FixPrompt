@@ -7,11 +7,11 @@
   "icon": "resources/icon.png",
   "repository": {
     "type": "git",
-    "url": "https://github.com/hasanalihaolader/fixprompt"
+    "url": "https://github.com/hasanalihaolader/FixPrompt"
   },
-  "homepage": "https://github.com/hasanalihaolader/fixprompt",
+  "homepage": "https://github.com/hasanalihaolader/FixPrompt",
   "bugs": {
-    "url": "https://github.com/hasanalihaolader/fixprompt/issues",
+    "url": "https://github.com/hasanalihaolader/FixPrompt/issues",
     "email": "rahibhasan689009@gmail.com"
   },
   "keywords": [

@@ -156,6 +156,10 @@ Initial release:
 
 ---
 
+## Contributing
+
+Contributions are welcome! See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
+
 ## License
 
 MIT
@@ -165,9 +169,9 @@ MIT
 ## Author
 
 **Hasan Ali Haolader**
-- GitHub: [@hasanalihaolader](https://github.com/hasanalihaolader)
+- GitHub: [@hasanalihaolader](https://github.com/hasanalihaolader/FixPrompt)
 - Email: rahibhasan689009@gmail.com
 
 ---
 
-*More LLM providers coming soon. Have a suggestion? [Open an issue](https://github.com/hasanalihaolader/fixprompt/issues).*
+*More LLM providers coming soon. Have a suggestion? [Open an issue](https://github.com/hasanalihaolader/FixPrompt/issues).*
