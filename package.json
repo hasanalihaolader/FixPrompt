@@ -29,8 +29,9 @@
     "vscode": "^1.118.0"
   },
   "categories": [
-    "Other",
-    "Machine Learning"
+    "AI",
+    "Chat",
+    "Programming Languages"
   ],
   "activationEvents": [],
   "main": "./dist/extension.js",
