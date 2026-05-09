@@ -1,6 +1,6 @@
 import * as vscode from "vscode";
 import { SecretsManager } from "../config/SecretsManager";
-import { PROVIDERS, DEFAULT_MODELS, type Provider } from "../llm/LLMRouter";
+import { PROVIDERS, DEFAULT_MODELS, PROVIDER_MODELS, type Provider } from "../llm/LLMRouter";
 import { fetchModels, type ModelInfo } from "../llm/fetchModels";
 
 export class SettingsPanel {
@@ -283,6 +283,7 @@ function buildHtml(
   const vscode = acquireVsCodeApi();
   const keyStatuses = ${JSON.stringify(keyStatuses)};
   const defaultModels = ${JSON.stringify(DEFAULT_MODELS)};
+  const providerModels = ${JSON.stringify(PROVIDER_MODELS)};
 
   const providerEl = document.getElementById('provider');
   const modelEl = document.getElementById('model');
@@ -292,9 +293,18 @@ function buildHtml(
   const keyStatusEl = document.getElementById('key-status');
 
   function loadModels(provider) {
-    modelStatus.textContent = 'Loading models…';
-    modelEl.innerHTML = '<option value="">Loading…</option>';
-    vscode.postMessage({ type: 'fetchModels', provider });
+    const hasKey = keyStatuses[provider];
+    if (hasKey) {
+      modelStatus.textContent = 'Loading models…';
+      modelEl.innerHTML = '<option value="">Loading…</option>';
+      vscode.postMessage({ type: 'fetchModels', provider });
+    } else {
+      const models = providerModels[provider] || [];
+      modelEl.innerHTML = models.map(m =>
+        '<option value="' + m + '"' + (m === defaultModels[provider] ? ' selected' : '') + '>' + m + '</option>'
+      ).join('');
+      modelStatus.textContent = 'Add your API key to load all available models.';
+    }
   }
 
   providerEl.addEventListener('change', () => {
